@@ -1,0 +1,1080 @@
+openapi: 3.0.3
+info:
+  title: Laravel
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/v1/todo:
+    get:
+      summary: 'Display a listing of the resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  current_page: 1
+                  data:
+                    -
+                      id: 1
+                      checked: false
+                      description: 'Complete CSSE6400 Prac 3'
+                      created_at: '2022-03-19T07:11:55.000000Z'
+                      updated_at: '2022-03-19T07:11:55.000000Z'
+                    -
+                      id: 2
+                      checked: false
+                      description: 'Hello World'
+                      created_at: '2022-03-19T07:11:55.000000Z'
+                      updated_at: '2022-03-19T07:11:55.000000Z'
+                    -
+                      id: 3
+                      checked: false
+                      description: 'Order some more IKEA lights'
+                      created_at: '2022-03-19T07:12:01.000000Z'
+                      updated_at: '2022-03-19T07:12:01.000000Z'
+                    -
+                      id: 4
+                      checked: true
+                      description: 'Order some more IKEA lights'
+                      created_at: '2022-03-19T07:12:01.000000Z'
+                      updated_at: '2022-03-19T07:12:01.000000Z'
+                    -
+                      id: 5
+                      checked: false
+                      description: 'Order some more IKEA lights'
+                      created_at: '2022-03-19T07:12:01.000000Z'
+                      updated_at: '2022-03-19T07:12:01.000000Z'
+                    -
+                      id: 6
+                      checked: false
+                      description: 'Order some more IKEA lights'
+                      created_at: '2022-03-19T07:12:01.000000Z'
+                      updated_at: '2022-03-19T07:12:01.000000Z'
+                    -
+                      id: 7
+                      checked: false
+                      description: 'Order some more IKEA lights'
+                      created_at: '2022-03-19T07:12:01.000000Z'
+                      updated_at: '2022-03-19T07:12:01.000000Z'
+                    -
+                      id: 8
+                      checked: false
+                      description: 'Order some more IKEA lights'
+                      created_at: '2022-03-19T07:12:01.000000Z'
+                      updated_at: '2022-03-19T07:12:01.000000Z'
+                    -
+                      id: 9
+                      checked: false
+                      description: 'Order some more IKEA lights'
+                      created_at: '2022-03-19T07:12:01.000000Z'
+                      updated_at: '2022-03-19T07:12:01.000000Z'
+                  first_page_url: 'http://localhost/api/v1/todo?page=1'
+                  from: 1
+                  last_page: 1
+                  last_page_url: 'http://localhost/api/v1/todo?page=1'
+                  links:
+                    -
+                      url: null
+                      label: '&laquo; Previous'
+                      active: false
+                    -
+                      url: 'http://localhost/api/v1/todo?page=1'
+                      label: '1'
+                      active: true
+                    -
+                      url: null
+                      label: 'Next &raquo;'
+                      active: false
+                  next_page_url: null
+                  path: 'http://localhost/api/v1/todo'
+                  per_page: 100
+                  prev_page_url: null
+                  to: 9
+                  total: 9
+                properties:
+                  current_page:
+                    type: integer
+                    example: 1
+                  data:
+                    type: array
+                    example:
+                      -
+                        id: 1
+                        checked: false
+                        description: 'Complete CSSE6400 Prac 3'
+                        created_at: '2022-03-19T07:11:55.000000Z'
+                        updated_at: '2022-03-19T07:11:55.000000Z'
+                      -
+                        id: 2
+                        checked: false
+                        description: 'Hello World'
+                        created_at: '2022-03-19T07:11:55.000000Z'
+                        updated_at: '2022-03-19T07:11:55.000000Z'
+                      -
+                        id: 3
+                        checked: false
+                        description: 'Order some more IKEA lights'
+                        created_at: '2022-03-19T07:12:01.000000Z'
+                        updated_at: '2022-03-19T07:12:01.000000Z'
+                      -
+                        id: 4
+                        checked: true
+                        description: 'Order some more IKEA lights'
+                        created_at: '2022-03-19T07:12:01.000000Z'
+                        updated_at: '2022-03-19T07:12:01.000000Z'
+                      -
+                        id: 5
+                        checked: false
+                        description: 'Order some more IKEA lights'
+                        created_at: '2022-03-19T07:12:01.000000Z'
+                        updated_at: '2022-03-19T07:12:01.000000Z'
+                      -
+                        id: 6
+                        checked: false
+                        description: 'Order some more IKEA lights'
+                        created_at: '2022-03-19T07:12:01.000000Z'
+                        updated_at: '2022-03-19T07:12:01.000000Z'
+                      -
+                        id: 7
+                        checked: false
+                        description: 'Order some more IKEA lights'
+                        created_at: '2022-03-19T07:12:01.000000Z'
+                        updated_at: '2022-03-19T07:12:01.000000Z'
+                      -
+                        id: 8
+                        checked: false
+                        description: 'Order some more IKEA lights'
+                        created_at: '2022-03-19T07:12:01.000000Z'
+                        updated_at: '2022-03-19T07:12:01.000000Z'
+                      -
+                        id: 9
+                        checked: false
+                        description: 'Order some more IKEA lights'
+                        created_at: '2022-03-19T07:12:01.000000Z'
+                        updated_at: '2022-03-19T07:12:01.000000Z'
+                    items:
+                      type: object
+                  first_page_url:
+                    type: string
+                    example: 'http://localhost/api/v1/todo?page=1'
+                  from:
+                    type: integer
+                    example: 1
+                  last_page:
+                    type: integer
+                    example: 1
+                  last_page_url:
+                    type: string
+                    example: 'http://localhost/api/v1/todo?page=1'
+                  links:
+                    type: array
+                    example:
+                      -
+                        url: null
+                        label: '&laquo; Previous'
+                        active: false
+                      -
+                        url: 'http://localhost/api/v1/todo?page=1'
+                        label: '1'
+                        active: true
+                      -
+                        url: null
+                        label: 'Next &raquo;'
+                        active: false
+                    items:
+                      type: object
+                  next_page_url:
+                    type: string
+                    example: null
+                  path:
+                    type: string
+                    example: 'http://localhost/api/v1/todo'
+                  per_page:
+                    type: integer
+                    example: 100
+                  prev_page_url:
+                    type: string
+                    example: null
+                  to:
+                    type: integer
+                    example: 9
+                  total:
+                    type: integer
+                    example: 9
+      tags:
+        - Endpoints
+      security: []
+    post:
+      summary: 'Store a newly created resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/v1/todo/{id}':
+    get:
+      summary: 'Display the specified resource.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'No query results for model [App\Models\Todo] 11'
+                  exception: Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+                  file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php
+                  line: 355
+                  trace:
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php
+                      line: 331
+                      function: prepareException
+                      class: Illuminate\Foundation\Exceptions\Handler
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php
+                      line: 54
+                      function: render
+                      class: Illuminate\Foundation\Exceptions\Handler
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php
+                      line: 51
+                      function: render
+                      class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                      line: 143
+                      function: handleException
+                      class: Illuminate\Routing\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php
+                      line: 50
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                      line: 180
+                      function: handle
+                      class: Illuminate\Routing\Middleware\SubstituteBindings
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php
+                      line: 126
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php
+                      line: 102
+                      function: handleRequest
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php
+                      line: 54
+                      function: handleRequestUsingNamedLimiter
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                      line: 180
+                      function: handle
+                      class: Illuminate\Routing\Middleware\ThrottleRequests
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                      line: 116
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Router.php
+                      line: 727
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Router.php
+                      line: 702
+                      function: runRouteWithinStack
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Router.php
+                      line: 666
+                      function: runRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Router.php
+                      line: 655
+                      function: dispatchToRoute
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php
+                      line: 167
+                      function: dispatch
+                      class: Illuminate\Routing\Router
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                      line: 141
+                      function: 'Illuminate\Foundation\Http\{closure}'
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php
+                      line: 31
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php
+                      line: 21
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php
+                      line: 40
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php
+                      line: 27
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php
+                      line: 86
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                      line: 180
+                      function: handle
+                      class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php
+                      line: 62
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                      line: 180
+                      function: handle
+                      class: Illuminate\Http\Middleware\HandleCors
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php
+                      line: 39
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                      line: 180
+                      function: handle
+                      class: Illuminate\Http\Middleware\TrustProxies
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                      line: 116
+                      function: 'Illuminate\Pipeline\{closure}'
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php
+                      line: 142
+                      function: then
+                      class: Illuminate\Pipeline\Pipeline
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php
+                      line: 111
+                      function: sendRequestThroughRouter
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
+                      line: 299
+                      function: handle
+                      class: Illuminate\Foundation\Http\Kernel
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
+                      line: 287
+                      function: callLaravelOrLumenRoute
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
+                      line: 89
+                      function: makeApiCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
+                      line: 45
+                      function: makeResponseCall
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
+                      line: 35
+                      function: makeResponseCallIfConditionsPass
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php
+                      line: 222
+                      function: __invoke
+                      class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php
+                      line: 179
+                      function: iterateThroughStrategies
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php
+                      line: 116
+                      function: fetchResponses
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php
+                      line: 117
+                      function: processRoute
+                      class: Knuckles\Scribe\Extracting\Extractor
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php
+                      line: 75
+                      function: extractEndpointsInfoFromLaravelApp
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php
+                      line: 51
+                      function: extractEndpointsInfoAndWriteToDisk
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php
+                      line: 49
+                      function: get
+                      class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php
+                      line: 36
+                      function: handle
+                      class: Knuckles\Scribe\Commands\GenerateDocumentation
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Container/Util.php
+                      line: 41
+                      function: 'Illuminate\Container\{closure}'
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php
+                      line: 93
+                      function: unwrapIfClosure
+                      class: Illuminate\Container\Util
+                      type: '::'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php
+                      line: 37
+                      function: callBoundMethod
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Container/Container.php
+                      line: 653
+                      function: call
+                      class: Illuminate\Container\BoundMethod
+                      type: '::'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Console/Command.php
+                      line: 136
+                      function: call
+                      class: Illuminate\Container\Container
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/symfony/console/Command/Command.php
+                      line: 291
+                      function: execute
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Console/Command.php
+                      line: 121
+                      function: run
+                      class: Symfony\Component\Console\Command\Command
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/symfony/console/Application.php
+                      line: 989
+                      function: run
+                      class: Illuminate\Console\Command
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/symfony/console/Application.php
+                      line: 299
+                      function: doRunCommand
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/symfony/console/Application.php
+                      line: 171
+                      function: doRun
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Console/Application.php
+                      line: 102
+                      function: run
+                      class: Symfony\Component\Console\Application
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php
+                      line: 129
+                      function: run
+                      class: Illuminate\Console\Application
+                      type: '->'
+                    -
+                      file: /home/uqehugh3/Documents/CSSE6400/todo/artisan
+                      line: 37
+                      function: handle
+                      class: Illuminate\Foundation\Console\Kernel
+                      type: '->'
+                properties:
+                  message:
+                    type: string
+                    example: 'No query results for model [App\Models\Todo] 11'
+                  exception:
+                    type: string
+                    example: Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+                  file:
+                    type: string
+                    example: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php
+                  line:
+                    type: integer
+                    example: 355
+                  trace:
+                    type: array
+                    example:
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Exceptions/Handler.php
+                        line: 331
+                        function: prepareException
+                        class: Illuminate\Foundation\Exceptions\Handler
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/nunomaduro/collision/src/Adapters/Laravel/ExceptionHandler.php
+                        line: 54
+                        function: render
+                        class: Illuminate\Foundation\Exceptions\Handler
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Pipeline.php
+                        line: 51
+                        function: render
+                        class: NunoMaduro\Collision\Adapters\Laravel\ExceptionHandler
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                        line: 143
+                        function: handleException
+                        class: Illuminate\Routing\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Middleware/SubstituteBindings.php
+                        line: 50
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                        line: 180
+                        function: handle
+                        class: Illuminate\Routing\Middleware\SubstituteBindings
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php
+                        line: 126
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php
+                        line: 102
+                        function: handleRequest
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Middleware/ThrottleRequests.php
+                        line: 54
+                        function: handleRequestUsingNamedLimiter
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                        line: 180
+                        function: handle
+                        class: Illuminate\Routing\Middleware\ThrottleRequests
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                        line: 116
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Router.php
+                        line: 727
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Router.php
+                        line: 702
+                        function: runRouteWithinStack
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Router.php
+                        line: 666
+                        function: runRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Routing/Router.php
+                        line: 655
+                        function: dispatchToRoute
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php
+                        line: 167
+                        function: dispatch
+                        class: Illuminate\Routing\Router
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                        line: 141
+                        function: 'Illuminate\Foundation\Http\{closure}'
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ConvertEmptyStringsToNull.php
+                        line: 31
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TransformsRequest.php
+                        line: 21
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/TrimStrings.php
+                        line: 40
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TransformsRequest
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\TrimStrings
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/ValidatePostSize.php
+                        line: 27
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\ValidatePostSize
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Middleware/PreventRequestsDuringMaintenance.php
+                        line: 86
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                        line: 180
+                        function: handle
+                        class: Illuminate\Foundation\Http\Middleware\PreventRequestsDuringMaintenance
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Http/Middleware/HandleCors.php
+                        line: 62
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                        line: 180
+                        function: handle
+                        class: Illuminate\Http\Middleware\HandleCors
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Http/Middleware/TrustProxies.php
+                        line: 39
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                        line: 180
+                        function: handle
+                        class: Illuminate\Http\Middleware\TrustProxies
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Pipeline/Pipeline.php
+                        line: 116
+                        function: 'Illuminate\Pipeline\{closure}'
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php
+                        line: 142
+                        function: then
+                        class: Illuminate\Pipeline\Pipeline
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Http/Kernel.php
+                        line: 111
+                        function: sendRequestThroughRouter
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
+                        line: 299
+                        function: handle
+                        class: Illuminate\Foundation\Http\Kernel
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
+                        line: 287
+                        function: callLaravelOrLumenRoute
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
+                        line: 89
+                        function: makeApiCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
+                        line: 45
+                        function: makeResponseCall
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Strategies/Responses/ResponseCalls.php
+                        line: 35
+                        function: makeResponseCallIfConditionsPass
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php
+                        line: 222
+                        function: __invoke
+                        class: Knuckles\Scribe\Extracting\Strategies\Responses\ResponseCalls
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php
+                        line: 179
+                        function: iterateThroughStrategies
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Extracting/Extractor.php
+                        line: 116
+                        function: fetchResponses
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php
+                        line: 117
+                        function: processRoute
+                        class: Knuckles\Scribe\Extracting\Extractor
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php
+                        line: 75
+                        function: extractEndpointsInfoFromLaravelApp
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/GroupedEndpoints/GroupedEndpointsFromApp.php
+                        line: 51
+                        function: extractEndpointsInfoAndWriteToDisk
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/knuckleswtf/scribe/src/Commands/GenerateDocumentation.php
+                        line: 49
+                        function: get
+                        class: Knuckles\Scribe\GroupedEndpoints\GroupedEndpointsFromApp
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php
+                        line: 36
+                        function: handle
+                        class: Knuckles\Scribe\Commands\GenerateDocumentation
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Container/Util.php
+                        line: 41
+                        function: 'Illuminate\Container\{closure}'
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php
+                        line: 93
+                        function: unwrapIfClosure
+                        class: Illuminate\Container\Util
+                        type: '::'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Container/BoundMethod.php
+                        line: 37
+                        function: callBoundMethod
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Container/Container.php
+                        line: 653
+                        function: call
+                        class: Illuminate\Container\BoundMethod
+                        type: '::'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Console/Command.php
+                        line: 136
+                        function: call
+                        class: Illuminate\Container\Container
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/symfony/console/Command/Command.php
+                        line: 291
+                        function: execute
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Console/Command.php
+                        line: 121
+                        function: run
+                        class: Symfony\Component\Console\Command\Command
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/symfony/console/Application.php
+                        line: 989
+                        function: run
+                        class: Illuminate\Console\Command
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/symfony/console/Application.php
+                        line: 299
+                        function: doRunCommand
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/symfony/console/Application.php
+                        line: 171
+                        function: doRun
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Console/Application.php
+                        line: 102
+                        function: run
+                        class: Symfony\Component\Console\Application
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php
+                        line: 129
+                        function: run
+                        class: Illuminate\Console\Application
+                        type: '->'
+                      -
+                        file: /home/uqehugh3/Documents/CSSE6400/todo/artisan
+                        line: 37
+                        function: handle
+                        class: Illuminate\Foundation\Console\Kernel
+                        type: '->'
+                    items:
+                      type: object
+      tags:
+        - Endpoints
+      security: []
+    put:
+      summary: 'Update the specified resource in storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    delete:
+      summary: 'Remove the specified resource from storage.'
+      description: ''
+      parameters:
+        -
+          in: header
+          name: Content-Type
+          description: ''
+          example: application/json
+          schema:
+            type: string
+        -
+          in: header
+          name: Accept
+          description: ''
+          example: application/json
+          schema:
+            type: string
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the todo.'
+        example: 11
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Endpoints
+    description: ''
