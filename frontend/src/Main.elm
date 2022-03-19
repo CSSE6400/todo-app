@@ -10,21 +10,13 @@ import Browser
 import Html exposing (Html, div, h1, text)
 import Html.Attributes exposing (classList)
 import Http
-import Json.Decode exposing (bool, field, list, map2, string)
-import List exposing (concat, map, range)
+import Json.Decode exposing (Decoder, bool, field, list, map2, string)
+import List exposing (map, range)
 
 
 endpoint : String
 endpoint =
     "https://todo-list-6400.free.beeceptor.com"
-
-
-getTodoList : Cmd Msg
-getTodoList =
-    Http.get
-        { url = endpoint ++ "/api/v1/todo"
-        , expect = Http.expectJson GotTodos (list (map2 TodoItem (field "description" string) (field "checked" bool)))
-        }
 
 
 type alias TodoItem =
@@ -33,75 +25,21 @@ type alias TodoItem =
     }
 
 
-type alias State =
-    { todos : List TodoItem
-    , page : Int
-    , pageRange : ( Int, Int )
-    , loading : Bool
-    , error : Maybe Http.Error
-    }
-
-
-initState : State
-initState =
-    { todos = [], page = 1, pageRange = ( 1, 3 ), loading = True, error = Nothing }
-
-
-main : Program () State Msg
-main =
-    Browser.element
-        { init = \() -> ( initState, getTodoList )
-        , subscriptions = \_ -> Sub.none
-        , update = \msg model -> ( update msg model, Cmd.none )
-        , view = view
-        }
-
-
-type Msg
-    = OpenPage Int
-    | Toggle
-    | GotTodos (Result Http.Error (List TodoItem))
-
-
-update : Msg -> State -> State
-update msg model =
-    case msg of
-        OpenPage page ->
-            { model | page = page }
-
-        Toggle ->
-            model
-
-        GotTodos response ->
-            case response of
-                Ok todos ->
-                    { model | todos = todos, loading = False }
-
-                Err err ->
-                    { model | error = Just err, loading = False }
-
-
-view : State -> Html Msg
-view model =
-    container []
-        (concat
-            [ [ CDN.stylesheet
-              , h1 [] [ text "My Todo List" ]
-              , if not model.loading then
-                    todoListView model.todos
-
-                else
-                    loadingView
-              , paginationView model.page model.pageRange
-              ]
-            , case model.error of
-                Nothing ->
-                    []
-
-                Just err ->
-                    [ div [] [ text ("Error: " ++ httpErrorToString err) ] ]
-            ]
+decodeTodoList : Decoder (List TodoItem)
+decodeTodoList =
+    list
+        (map2 TodoItem
+            (field "description" string)
+            (field "checked" bool)
         )
+
+
+getTodoList : Cmd Msg
+getTodoList =
+    Http.get
+        { url = endpoint ++ "/api/v1/todo"
+        , expect = Http.expectJson GotTodos decodeTodoList
+        }
 
 
 httpErrorToString : Http.Error -> String
@@ -120,7 +58,7 @@ httpErrorToString error =
             "The server had a problem"
 
         Http.BadStatus 400 ->
-            "Failed to authenticate, try logging in again"
+            "Got a 400 bad request error"
 
         Http.BadStatus _ ->
             "Unknown error"
@@ -129,18 +67,101 @@ httpErrorToString error =
             "Unable to decode response from server: " ++ text
 
 
+type alias State =
+    { todos : List TodoItem -- loaded list of todo
+    , page : Int -- dynamic page number, updated by pagination UI
+    , pageRange : ( Int, Int ) -- somehow needs to get loaded by API
+    , loading : Bool
+    , error : Maybe Http.Error -- errors that can come from the server
+    }
+
+
+initState : State
+initState =
+    { todos = []
+    , page = 1
+    , pageRange = ( 1, 1 )
+    , loading = True
+    , error = Nothing
+    }
+
+
+main : Program () State Msg
+main =
+    Browser.element
+        { init = \() -> ( initState, getTodoList )
+        , subscriptions = \_ -> Sub.none
+        , update = \msg model -> ( update msg model, Cmd.none )
+        , view = view
+        }
+
+
+type Msg
+    = OpenPage Int -- swap page - triggered by pagination UI
+    | GotTodos (Result Http.Error (List TodoItem)) -- recieved todo list from server
+
+
+update : Msg -> State -> State
+update msg model =
+    case msg of
+        OpenPage page ->
+            { model | page = page }
+
+        GotTodos response ->
+            case response of
+                Ok todos ->
+                    { model | todos = todos, loading = False }
+
+                Err err ->
+                    { model | error = Just err, loading = False }
+
+
+view : State -> Html Msg
+view model =
+    container []
+        [ CDN.stylesheet
+        , h1 [] [ text "My Todo List" ]
+        , bodyView model
+        , paginationView model.page model.pageRange
+        , maybeErrorView model.error
+        ]
+
+
+maybeErrorView : Maybe Http.Error -> Html Msg
+maybeErrorView error =
+    div []
+        (case error of
+            Nothing ->
+                []
+
+            Just err ->
+                [ text (httpErrorToString err) ]
+        )
+
+
 loadingView : Html Msg
 loadingView =
-    div [ classList [ ( "d-flex", True ), ( "justify-content-center", True ) ] ] [ spinner [] [] ]
+    div
+        [ classList [ ( "d-flex", True ), ( "justify-content-center", True ) ] ]
+        [ spinner [] [] ]
+
+
+bodyView : State -> Html Msg
+bodyView model =
+    if not model.loading then
+        todoListView model.todos
+
+    else
+        loadingView
 
 
 todoListView : List TodoItem -> Html Msg
 todoListView todos =
-    ul (map todoView todos)
+    ul (map todoItemView todos)
 
 
-todoView : TodoItem -> Bootstrap.ListGroup.Item msg
-todoView todo =
+todoItemView : TodoItem -> Bootstrap.ListGroup.Item msg
+todoItemView todo =
     li
         (if todo.checked then
             [ Bootstrap.ListGroup.success ]
