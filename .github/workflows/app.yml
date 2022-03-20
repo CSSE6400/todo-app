@@ -41,5 +41,5 @@ jobs:
         file: backend/Dockerfile
         push: true
         tags: |
-          ghcr.io/${{ github.repository }}:latest
+          ghcr.io/csse6400/todo-app:latest
     
