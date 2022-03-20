@@ -21,7 +21,7 @@ import List exposing (map, range)
 
 endpoint : String
 endpoint =
-    "http://localhost:8000"
+    ""
 
 
 type alias TodoItem =
