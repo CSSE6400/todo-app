@@ -3,20 +3,28 @@ module Main exposing (..)
 import Bootstrap.CDN as CDN
 import Bootstrap.General.HAlign as HAlign
 import Bootstrap.Grid exposing (container)
+import Bootstrap.Form.Input as Input
 import Bootstrap.ListGroup exposing (li, ul)
 import Bootstrap.Pagination as Pagination
 import Bootstrap.Spinner exposing (spinner)
+import Bootstrap.Button exposing (button)
+import Bootstrap.Modal as Modal
+import Bootstrap.Button as Button
 import Browser
 import Html exposing (Html, div, h1, text)
 import Html.Attributes exposing (classList)
 import Http
-import Json.Decode exposing (Decoder, bool, field, list, map2, string)
+import Json.Decode exposing (Decoder, bool, field, int, list, map2, map3, string)
 import List exposing (map, range)
+import Html.Attributes exposing (class)
+import Html.Attributes exposing (style)
+import Json.Encode as Encode
+import Html.Events exposing (onClick)
 
 
 endpoint : String
 endpoint =
-    "https://todo-list-6400.free.beeceptor.com"
+    "http://localhost:8000"
 
 
 type alias TodoItem =
@@ -25,20 +33,48 @@ type alias TodoItem =
     }
 
 
+decodeTodoItem : Decoder TodoItem
+decodeTodoItem =
+    map2 TodoItem
+        (field "description" string)
+        (field "checked" bool)
+
 decodeTodoList : Decoder (List TodoItem)
 decodeTodoList =
-    list
-        (map2 TodoItem
-            (field "description" string)
-            (field "checked" bool)
-        )
+    list decodeTodoItem
+
+
+type alias TodoListResponse =
+    { data : List TodoItem
+    , current_page : Int
+    , last_page : Int
+    }
+
+
+decodeListResponse : Decoder TodoListResponse
+decodeListResponse =
+    map3 TodoListResponse
+        (field "data" decodeTodoList)
+        (field "current_page" int)
+        (field "last_page" int)
 
 
 getTodoList : Cmd Msg
 getTodoList =
     Http.get
         { url = endpoint ++ "/api/v1/todo"
-        , expect = Http.expectJson GotTodos decodeTodoList
+        , expect = Http.expectJson GotTodos decodeListResponse
+        }
+
+postTodoItem : String -> Cmd Msg
+postTodoItem description =
+    Http.post
+        { url = endpoint ++ "/api/v1/todo"
+        , body = Http.jsonBody (Encode.object
+            [ ( "description", Encode.string description )
+            , ( "checked", Encode.bool False )
+            ])
+        , expect = Http.expectJson TodoCreated decodeTodoItem
         }
 
 
@@ -67,12 +103,18 @@ httpErrorToString error =
             "Unable to decode response from server: " ++ text
 
 
+type alias Modal =
+    { isOpen : Bool
+    , description : String
+    }
+
 type alias State =
     { todos : List TodoItem -- loaded list of todo
     , page : Int -- dynamic page number, updated by pagination UI
     , pageRange : ( Int, Int ) -- somehow needs to get loaded by API
     , loading : Bool
     , error : Maybe Http.Error -- errors that can come from the server
+    , modal : Modal
     }
 
 
@@ -83,6 +125,7 @@ initState =
     , pageRange = ( 1, 1 )
     , loading = True
     , error = Nothing
+    , modal = { isOpen = False, description = "" }
     }
 
 
@@ -91,39 +134,73 @@ main =
     Browser.element
         { init = \() -> ( initState, getTodoList )
         , subscriptions = \_ -> Sub.none
-        , update = \msg model -> ( update msg model, Cmd.none )
+        , update = \msg model -> update msg model
         , view = view
         }
 
 
 type Msg
     = OpenPage Int -- swap page - triggered by pagination UI
-    | GotTodos (Result Http.Error (List TodoItem)) -- recieved todo list from server
+    | GotTodos (Result Http.Error TodoListResponse) -- recieved todo list from server
+    | TodoCreated (Result Http.Error TodoItem) -- recieved newly created todo from server
+    | OpenModal
+    | CloseModal
+    | UpdateInput String -- triggered by modal input
+    | CreateTodo -- triggered by modal create button
 
 
-update : Msg -> State -> State
+-- update : Msg -> State -> State
+update : Msg -> State -> (State, Cmd Msg)
 update msg model =
     case msg of
         OpenPage page ->
-            { model | page = page }
+            ({ model | page = page }, Cmd.none)
 
         GotTodos response ->
             case response of
                 Ok todos ->
-                    { model | todos = todos, loading = False }
+                    ({ model
+                        | todos = todos.data
+                        , page = todos.current_page
+                        , pageRange = ( 1, todos.last_page )
+                        , loading = False
+                    }, Cmd.none)
 
                 Err err ->
-                    { model | error = Just err, loading = False }
+                    ({ model | error = Just err, loading = False }, Cmd.none)
+
+        OpenModal ->
+            ({ model | modal = { isOpen = True, description = "" } }, Cmd.none)
+
+        CloseModal ->
+            ({ model | modal = { isOpen = False, description = "" } }, Cmd.none)
+
+        UpdateInput description ->
+            ({ model | modal = { isOpen = True, description = description } }, Cmd.none)
+
+        TodoCreated response ->
+            case response of
+                Ok todo ->
+                    ({model | loading = False, todos = List.concat [model.todos, [todo]] }, Cmd.none)
+
+                Err err ->
+                    ({ model | error = Just err, loading = False }, Cmd.none)
+
+        CreateTodo ->
+            ({ model | loading = True }, postTodoItem model.modal.description)
 
 
 view : State -> Html Msg
 view model =
     container []
         [ CDN.stylesheet
+        , CDN.fontAwesome
         , h1 [] [ text "My Todo List" ]
+        , div [style "float" "right"] [button [Button.onClick OpenModal] [Html.i [class "fa fa-plus-circle"] []]]
         , bodyView model
         , paginationView model.page model.pageRange
         , maybeErrorView model.error
+        , maybeModalView model.modal
         ]
 
 
@@ -138,6 +215,26 @@ maybeErrorView error =
                 [ text (httpErrorToString err) ]
         )
 
+maybeModalView : Modal -> Html Msg
+maybeModalView modal =
+    Modal.config CloseModal
+            |> Modal.small
+            |> Modal.h5 [] [ text "New Todo" ]
+            |> Modal.body []
+                [ Input.text
+                    [ Input.id "myinput"
+                    , Input.small
+                    , Input.onInput UpdateInput
+                    ]
+                ]
+            |> Modal.footer []
+                [ Button.button
+                    [ Button.primary
+                    , Button.attrs [ onClick CreateTodo ]
+                    ]
+                    [ text "Submit" ]
+                ]
+            |> Modal.view (if modal.isOpen then Modal.shown else Modal.hidden)
 
 loadingView : Html Msg
 loadingView =
