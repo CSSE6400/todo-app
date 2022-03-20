@@ -20,3 +20,12 @@ services:
         # Where our data will be persisted
         volumes:
             - ./dev/data/db:/var/lib/mysql
+    backend:
+        build: .
+        restart: always
+        depends_on:
+            - db
+        ports:
+            - '8000:8000'
+        env_file:
+            -   .env
