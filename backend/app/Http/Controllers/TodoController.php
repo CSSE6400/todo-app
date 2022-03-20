@@ -14,7 +14,7 @@ class TodoController extends Controller
      */
     public function index()
     {
-        return Todo::paginate(100);
+        return Todo::paginate(10);
     }
 
 
@@ -57,20 +57,22 @@ class TodoController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Todo  $todo
+     * @param  int  $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function update(Request $request, Todo $todo)
+    public function update(Request $request, int $id)
     {
         $request->validate([
             'description' => ['required', 'min:1', 'max:255'],
             'checked' => ['required'],
         ]);
 
+        $todo = Todo::findOrFail($id);
+
         $todo->checked = $request->checked;
         $todo->description = $request->description;
 
-        $todo->updateOrFail();
+        $todo->save();
         return $todo;
     }
 
