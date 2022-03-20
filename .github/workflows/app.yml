@@ -19,8 +19,8 @@ jobs:
         elm-version: 0.19.1
     
     - name: Compile Frontend
-      run: elm make src/Main.elm
       working-directory: ./frontend
+      run: elm make src/Main.elm
 
     #todo(evan): Task to copy build artifact from frontend to backend
 
@@ -38,11 +38,11 @@ jobs:
       run: echo "TAG=${GITHUB_REF/refs\/tags\//}" >> $GITHUB_ENV
 
     - name: Build and push Docker image
+      working-directory: ./backend
       uses: docker/build-push-action@v2
       with:
         context: .
         push: true
         tags: |
           ghcr.io/${{ github.repository }}:${{ env.TAG }}
-      working-directory: ./backend
     
