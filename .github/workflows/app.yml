@@ -22,7 +22,8 @@ jobs:
       working-directory: ./frontend
       run: elm make src/Main.elm
 
-    #todo(evan): Task to copy build artifact from frontend to backend
+    - name: Deploy frontend to Backend
+      run: cp frontend/index.html backend/resources/view/welcome.blade.php
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
