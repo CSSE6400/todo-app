@@ -1,4 +1,4 @@
-name: Build Todo App ( Combined Frontend + Backend )
+name: Build Todo App ( Backend )
 
 on:
   push:
@@ -12,18 +12,6 @@ jobs:
 
     - name: Checkout
       uses: actions/checkout@v2
-
-    - name: Frontend Dependencies
-      uses: jorelali/setup-elm@v3
-      with:
-        elm-version: 0.19.1
-    
-    - name: Compile Frontend
-      working-directory: ./frontend
-      run: elm make src/Main.elm
-
-    - name: Deploy frontend to Backend
-      run: cp frontend/index.html backend/resources/views/welcome.blade.php
 
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
@@ -42,6 +30,6 @@ jobs:
         file: backend/Dockerfile
         push: true
         tags: |
-          ghcr.io/csse6400/todo-app:latest
+          ghcr.io/csse6400/todo-app:backend-latest
     
     

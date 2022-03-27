@@ -1,0 +1,31 @@
+name: Build Todo App ( Frontend )
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    - name: Frontend Dependencies
+      uses: jorelali/setup-elm@v3
+      with:
+        elm-version: 0.19.1
+    
+    - name: Compile Frontend
+      working-directory: ./frontend
+      run: elm make src/Main.elm
+
+    - name: Release Frontend
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+          ./frontend/index.html
+    
+    
