@@ -3,7 +3,9 @@ name: Build Todo App ( Backend )
 on:
   push:
     branches:
-    - main
+      - 'main'
+    tags:
+      - 'v*'
 
 jobs:
   build:
@@ -22,6 +24,12 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+    
+    - name: Extract metadata (tags, labels) for Docker
+      id: meta
+      uses: docker/metadata-action@v3
+      with:
+        images: ghcr.io/csse6400/todo-app
 
     - name: Build and push Docker image
       uses: docker/build-push-action@v2
@@ -29,7 +37,7 @@ jobs:
         context: ./backend
         file: backend/Dockerfile
         push: true
-        tags: |
-          ghcr.io/csse6400/todo-app:backend-latest
+        tags: ${{ steps.meta.outputs.tags }}
+        labels: ${{ steps.meta.outputs.labels }}
     
     
